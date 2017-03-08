@@ -61,6 +61,7 @@ namespace Capstone.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IParkDAL>().To<ParkSqlDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["npgeek"].ConnectionString);
         }        
     }
 }
