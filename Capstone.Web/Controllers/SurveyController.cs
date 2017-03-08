@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Web.DAL;
+using Capstone.Web.Models;
 
 namespace Capstone.Web.Controllers
 {
@@ -21,6 +22,18 @@ namespace Capstone.Web.Controllers
         public ActionResult Index()
         {
             return View("Index", surveyDAL.GetResults());
+        }
+        [HttpGet]
+        public ActionResult Survey()
+        {
+            return View("Survey");
+
+        }
+        [HttpPost]
+        public ActionResult Survey(SurveyModel survey)
+        {
+            surveyDAL.AddSurvey(survey);
+            return RedirectToAction("Index", "Survey");
         }
     }
 }
