@@ -8,6 +8,9 @@
         width: 330px;
     }
 
+    h2{
+        margin: 0px;
+    }
 nav {
     border: solid 1 px black;
 }
@@ -71,9 +74,25 @@ li a:hover {
 #main-content {
     background-color: white;
     color: black;
+    border: solid 1px green;
+    padding: 5px;
     border-radius: 10px;
     margin: 60px 25px;
     min-height: 400px;
     padding-top: 10px;
 }
 
+.parkInfo{
+    display: flex;
+}
+.parkInfo img{
+    height: 100px;
+    padding: 10px;
+}
+.parkDescription{
+    display: block;
+}
+.parkDescription a{
+    color: black;
+    text-decoration: none;
+}
