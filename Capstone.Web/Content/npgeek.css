@@ -1,4 +1,8 @@
-﻿header p {
+﻿body {
+    background-color: lightblue;
+}
+
+header p {
 color: #FFFFFF;
 font-size: 12px;
 }
@@ -13,6 +17,7 @@ h2{
 }
 nav {
 border: solid 1 px black;
+text-align: center;
 }
 
 nav h2 {
@@ -30,9 +35,11 @@ nav p {
 ul {
 padding-left: 80px;
 border: solid 1 px black;
+text-align: center;
 }
 
 li {
+
 padding-bottom: 4px;
 border: solid 1 px black;
 }
@@ -101,6 +108,16 @@ display:flex;
 display:block;
 }
 .parkImage img{
-height: 500px;
+height: 250px;
 padding: 10px;
+}
+
+.quote {
+    font-style: italic;
+    text-align: center;
+    font-family: Gabriola;
+}
+
+.parkName{
+    text-align: center;
 }

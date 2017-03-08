@@ -8,25 +8,17 @@
 
 <div id="main-content">
 
-    <h2>@Model.ParkName</h2>
-    <p><h6>@Model.InspirationalQuote by @Model.InspirationalQuoteSource</h6></p>
+    <h2 class="parkName">@Model.ParkName</h2>
+    <h2 class="quote">"@Model.InspirationalQuote" <br />- @Model.InspirationalQuoteSource</h2>
     <div id="parkDetailPage">
         <div class="parkImage">
             <img src="~/Content/img/parks/@(Model.ParkCode).jpg" />
         </div>
         <div class="parkDetail">
 
-            <p>State: @Model.State </p>
-            <p>Since: @Model.YearFounded</p>
-            <p>Entry Fee: $@Model.Entryfee</p>
-            <p>Size: @Model.Acreage acres</p>
-            <p>Elevation: @Model.ElevationInFeet ft</p>
-            <p>Trail Miles: @Model.MilesOfTrail miles</p>
-            <p>Number Of CampSites: @Model.NumberOfCampSites</p>
-            <p>Annual Visitor: @Model.AnnualVisitorCount</p>
-            <p>Number of animal species: @Model.NumberOfAnimalSpecies</p>
-            <p>Climate: @Model.Climate</p>
+            <p>@Model.ParkName is a @Model.Climate park, opened in @Model.YearFounded in the state of @(Model.State). At an elevation of @(Model.ElevationInFeet.ToString("N0")) feet, it features @Model.MilesOfTrail.ToString("N0") miles of trails, @Model.NumberOfCampSites.ToString("N0") campsites and covers @Model.Acreage.ToString("N0") acres. The park draws @Model.AnnualVisitorCount.ToString("N0") visitors per year and is host to @Model.NumberOfAnimalSpecies.ToString("N0") species of animals.</p>
             <div class="detailDescription"><p>@Model.ParkDescription</p></div>
+            <p><strong>Entrance Fee: @Model.Entryfee.ToString("C")</strong></p>
         </div>
     </div>
 
