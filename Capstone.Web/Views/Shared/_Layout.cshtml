@@ -12,17 +12,11 @@
 <body>
     <header>
         <img src="~/Content/img/logo.png" alt="National Park Geek Logo" />
-        <h1>America's National Parks</h1>
-        <p>National Parks are totally cool. They have mountains, trees, lakes and sometimes even bears. How cool is that? BEARS!</p>
     </header>
     <nav>
-        <h2>Explore The National Parks</h2>
-        <p>Check out these National Parks on our site!</p>
         <ul>
-            <li>@Html.ActionLink("Home Page", "Index", "Home")</li>
-            <li>Second Link</li>
-            <li>Third Link</li>
-            <li>Fourth Link</li>
+            <li>@Html.ActionLink("Park Information", "Index", "Home")</li>
+            <li>@Html.ActionLink("Survey Page", "Index", "Home")</li>
         </ul>
     </nav>
     <section>
