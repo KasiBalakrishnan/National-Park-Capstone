@@ -10,7 +10,8 @@ namespace Capstone.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-
+    using DAL;
+    using System.Configuration;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

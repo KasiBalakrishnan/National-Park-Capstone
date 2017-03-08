@@ -18,7 +18,7 @@ namespace Capstone.Web.DAL
         {
             this.connectionString = connectionString;
         }
-        
+
         public ParkModel GetPark(string parkCode)
         {
             ParkModel park = new ParkModel();
@@ -33,7 +33,7 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@parkCode", parkCode);
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         park.ParkCode = Convert.ToString(reader["parkCode"]);
                         park.ParkName = Convert.ToString(reader["parkName"]);
@@ -54,7 +54,7 @@ namespace Capstone.Web.DAL
                 }
                 return park;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw ex;
             }
@@ -62,7 +62,51 @@ namespace Capstone.Web.DAL
 
         public List<ParkModel> GetParks()
         {
-            throw new NotImplementedException();
+            List<ParkModel> output = new List<ParkModel>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetParks, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ParkModel p = new ParkModel()
+                        {
+                            ParkCode = Convert.ToString(reader["parkCode"]),
+                            ParkName = Convert.ToString(reader["parkName"]),
+                            State = Convert.ToString(reader["state"]),
+                            Acreage = Convert.ToInt32(reader["acreage"]),
+                            ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]),
+                            MilesOfTrail = Convert.ToInt32(reader["milesOfTrail"]),
+                            NumberOfCampSites = Convert.ToInt32(reader["numberOfCampsites"]),
+                            Climate = Convert.ToString(reader["climate"]),
+                            YearFounded = Convert.ToInt32(reader["yearFounded"]),
+                            AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]),
+                            InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]),
+                            InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]),
+                            ParkDescription = Convert.ToString(reader["parkDescription"]),
+                            Entryfee = Convert.ToInt32(reader["entryFee"]),
+                            NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"])
+
+
+                        };
+
+                        output.Add(p);
+                    }
+                    
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return output;
         }
     }
 }
