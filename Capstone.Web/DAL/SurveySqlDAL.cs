@@ -68,7 +68,7 @@ namespace Capstone.Web.DAL
             }
             catch (SqlException ex)
             {
-                throw ex;
+                return false;
             }
         }
     }

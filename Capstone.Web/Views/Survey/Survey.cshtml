@@ -7,31 +7,39 @@
 
 <div id="main-content">
     <h2>Take a Survey</h2>
-    
 
-        @using (Html.BeginForm("Survey", "Survey", FormMethod.Post))
-        {
-            <div class="surveyForm">
-                <div class="labels">
-                    <div>@Html.Label("ParkCode", "Park")
-                    @Html.DropDownListFor(m => m.ParkCode, SurveyModel.Parks)</div> 
-                   <div> @Html.Label("EmailAddress", "Email Address")
-                @Html.TextBoxFor(m => m.EmailAddress)</div>
-                    <div>@Html.Label("State", "State")
-                    @Html.TextBoxFor(m => m.State)</div>
-                   <div>@Html.Label("ActivityLevel", "Activity Level")
-                    @Html.DropDownListFor(m => m.ActivityLevel, SurveyModel.ActivityLevels)</div> 
+
+    @using (Html.BeginForm("Survey", "Survey", FormMethod.Post))
+    {
+        <div class="surveyForm">
+            <div class="labels">
+                <div>
+                    @Html.Label("ParkCode", "Park")<span style="color:red">@Html.ValidationMessageFor(m => m.ParkCode)</span>
+                    @Html.DropDownListFor(m => m.ParkCode, SurveyModel.Parks, "Choose a Park")
                 </div>
-               
-                <div><button>Submit</button></div>
- 
+                <div>
+                    @Html.Label("EmailAddress", "Email Address")<span style="color:red">@Html.ValidationMessageFor(m => m.EmailAddress)</span>
+                    @Html.TextBoxFor(m => m.EmailAddress)
+                </div>
+                <div>
+                    @Html.Label("State", "State")<span style="color:red">@Html.ValidationMessageFor(m => m.State)</span>
+                    @Html.DropDownListFor(m => m.State, SurveyModel.States, "Choose Your State")
+                </div>
+                <div>
+                    @Html.Label("ActivityLevel", "Activity Level")<span style="color:red">@Html.ValidationMessageFor(m => m.ActivityLevel)</span>
+                    @Html.DropDownListFor(m => m.ActivityLevel, SurveyModel.ActivityLevels, "Choose Your Activity Level")
+                </div>
             </div>
-        }
+
+            <div><button>Submit</button></div>
+
+        </div>
+    }
 
 
 
 
-    
+
 </div>
 
 

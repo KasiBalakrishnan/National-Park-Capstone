@@ -32,6 +32,11 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult Survey(SurveyModel survey)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("Survey", survey);
+            }
+
             surveyDAL.AddSurvey(survey);
             return RedirectToAction("Index", "Survey");
         }
