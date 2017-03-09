@@ -24,10 +24,42 @@
     <div>
         <h1>Weather Forecast</h1>
         <div>
-            <h2>Day 1</h2>
-            <p>Low: @Model.Low[0]</p>
-            <p>High: @Model.High[0]</p>
-            <p>Forecast: @Model.Forecast[0]</p>
+            @{for (int i = 0; i < 5; i++)
+                { <h2>Day @Model.FiveDayForecastvalue[i]</h2>
+                   <p>High: @Model.High[i]</p>
+                <p>Low: @Model.Low[i]</p>
+                <p>@Model.Forecast[i]</p>
+                    if(@Model.Forecast[i]=="snow")
+                    {
+                        <p>Weather Advice: Pack Snowshoes</p>
+                    }
+                    else if(@Model.Forecast[i]=="rain")
+                    {
+                        <p>Weather Advice: Pack rain gear and wear waterproof shoes</p>
+                    }
+                    else if (@Model.Forecast[i] == "thunderstorms")
+                    {
+                        <p>Weather Advice: Seek shelter and avoid hiking on exposed ridges</p>
+                    }
+                    else if (@Model.Forecast[i] == "sunny")
+                    {
+                        <p>Weather Advice: Pack sunblock</p>
+                    }
+
+                    if(@Model.High[i] > 75)
+                    {
+                        <p>Weather advice: Bring an extra gallon of water</p>
+                    }
+                    if(@Model.High[i] - @Model.Low[i] > 20)
+                    {
+                        <p>Weather advice: Wear breathable layers</p>
+                    }
+                    if(@Model.Low[i] <20)
+                    {
+                        <p>Weather advice: Know the dangers of exposures to frigid temperatures</p>
+                    }
+                }
+            }
         </div>
     </div>
 

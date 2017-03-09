@@ -27,5 +27,6 @@ namespace Capstone.Web.Models
         public List<int> Low { get; set; } = new List<int>();
         public List<int> High { get; set; } = new List<int>();
         public List<string> Forecast { get; set; } = new List<string>();
+       
     }
 }
