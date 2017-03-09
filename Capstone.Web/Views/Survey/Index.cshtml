@@ -1,5 +1,5 @@
 ﻿@using Capstone.Web.Models
-@model List<SurveyModel>
+@model Dictionary<string, int>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,14 +8,19 @@
 <div id="main-content">
     <h2>Results of the Survey</h2>
     <div>
-        @{ foreach (SurveyModel survey in Model)
-            {
-                <div>
-                    <div>
-                        <p><strong>@survey.EmailAddress</strong></p>
-                    </div>
-                </div>
+        <table class="surveyTable">
+            <tr>
+                <th>Park Name</th>
+                <th>Votes</th>
+            </tr>
+            @{ foreach (KeyValuePair<string, int> kvp in Model)
+                {
+                    <tr>
+                        <td>@kvp.Key</td>
+                        <td>@kvp.Value</td>
+                    </tr>
+                }
             }
-        }
+        </table>
     </div>
 </div>

@@ -9,7 +9,7 @@ namespace Capstone.Web.DAL
 {
     public interface ISurveyDAL
     {
-        List<SurveyModel> GetResults();
+        Dictionary<string,int> GetLeadParks();
         bool AddSurvey(SurveyModel survey);
     }
 }

@@ -10,16 +10,19 @@ namespace Capstone.Web.DAL
     public class SurveySqlDAL : ISurveyDAL
     {
         private string connectionString;
-        private const string SQL_GetPosts = "SELECT * FROM survey_result;";
         private const string SQL_InsertNewSurvey = "INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) values((@parkCode),(@emailAddress),(@state),(@activityLevel));";
+        private const string SQL_GetLeadParks = @"SELECT  park.parkName, COUNT(survey_result.parkCode) AS parksCount
+                                                FROM survey_result 
+                                                JOIN park ON park.parkCode=survey_result.parkCode 
+                                                GROUP BY park.parkName ORDER BY COUNT(park.parkName) desc;";
         public SurveySqlDAL(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public List<SurveyModel> GetResults()
+        public Dictionary<string, int> GetLeadParks()
         {
-            List<SurveyModel> output = new List<SurveyModel>();
+            Dictionary<string, int> leadingParks = new Dictionary<string, int>();
 
             try
             {
@@ -27,31 +30,21 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(SQL_GetPosts, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetLeadParks, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        SurveyModel p = new SurveyModel()
-                        {
-                            SurveyID = Convert.ToInt32(reader["surveyID"]),
-                            ParkCode = Convert.ToString(reader["parkCode"]),
-                            EmailAddress = Convert.ToString(reader["emailAddress"]),
-                            State = Convert.ToString(reader["state"]),
-                            ActivityLevel = Convert.ToString(reader["activityLevel"]),
-                        };
-
-                        output.Add(p);
+                        leadingParks.Add(Convert.ToString(reader["parkName"]), Convert.ToInt32(reader["parksCount"]));
                     }
-
+                    return leadingParks;
                 }
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            return output;
         }
 
         public bool AddSurvey(SurveyModel survey)
@@ -73,7 +66,7 @@ namespace Capstone.Web.DAL
                     return (rowsAffected > 0);
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw ex;
             }

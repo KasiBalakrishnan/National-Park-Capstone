@@ -21,7 +21,7 @@ namespace Capstone.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View("Index", surveyDAL.GetResults());
+            return View("Index", surveyDAL.GetLeadParks());
         }
         [HttpGet]
         public ActionResult Survey()
