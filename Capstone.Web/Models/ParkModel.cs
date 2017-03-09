@@ -23,5 +23,9 @@ namespace Capstone.Web.Models
         public string ParkDescription { get; set; }
         public int Entryfee { get; set; }
         public int NumberOfAnimalSpecies { get; set; }
+        public List<int> FiveDayForecastvalue { get; set; } = new List<int>();
+        public List<int> Low { get; set; } = new List<int>();
+        public List<int> High { get; set; } = new List<int>();
+        public List<string> Forecast { get; set; } = new List<string>();
     }
 }

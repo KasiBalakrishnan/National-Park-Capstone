@@ -9,7 +9,7 @@ namespace Capstone.Web.DAL
 {
     public class ParkSqlDAL : IParkDAL
     {
-        private const string SQL_GetPark = "SELECT * FROM park WHERE parkCode = (@parkCode);";
+        private const string SQL_GetPark = "SELECT * FROM park JOIN weather ON weather.parkCode = park.parkCode WHERE park.parkCode = (@parkCode);";
         private const string SQL_GetParks = "SELECT * FROM park;";
 
         private string connectionString;
@@ -50,6 +50,10 @@ namespace Capstone.Web.DAL
                         park.ParkDescription = Convert.ToString(reader["parkDescription"]);
                         park.Entryfee = Convert.ToInt32(reader["entryFee"]);
                         park.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+                        park.FiveDayForecastvalue.Add(Convert.ToInt32(reader["fiveDayForecastValue"]));
+                        park.Low.Add(Convert.ToInt32(reader["low"]));
+                        park.High.Add(Convert.ToInt32(reader["high"]));
+                        park.Forecast.Add(Convert.ToString(reader["forecast"]));
                     }
                 }
                 return park;
