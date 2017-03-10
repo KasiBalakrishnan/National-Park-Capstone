@@ -27,7 +27,21 @@ namespace Capstone.Web.Models
         public List<int> Low { get; set; } = new List<int>();
         public List<int> High { get; set; } = new List<int>();
         public List<string> Forecast { get; set; } = new List<string>();
+        public List<string> ImageName
+        {
+            get
+            {
+                List<string> Images = new List<string>();
+                for (int i = 0; i < Forecast.Count; i++)
+                {
+                    string name = Forecast[i].Replace(" ", "");
 
+                    Images.Add(name);
+                }
+                return Images;
+
+            }
+        }
         public int GetTemp(int tempInF, bool isInF)
         {
             if (isInF)
@@ -36,6 +50,7 @@ namespace Capstone.Web.Models
             }
             return ((tempInF - 32) * 5) / 9;
         }
+
        
     }
 }
