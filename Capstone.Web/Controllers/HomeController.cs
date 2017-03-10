@@ -9,8 +9,9 @@ namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly IParkDAL parkDAL;
-        
+
         public HomeController(IParkDAL parkDAL)
         {
             this.parkDAL = parkDAL;
@@ -22,10 +23,23 @@ namespace Capstone.Web.Controllers
         {
             return View("Index", parkDAL.GetParks());
         }
+
         [HttpGet]
         public ActionResult Park(string id)
         {
-            return View("Park", parkDAL.GetPark(id));
+            if (id == "true" || id == "false")
+            {
+                Session["TempIsF"] = Convert.ToBoolean(id);
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+            else
+            {
+                if(Session["TempIsF"] == null)
+                {
+                    Session["TempIsF"] = Convert.ToBoolean("true");
+                }
+                return View("Park", parkDAL.GetPark(id));
+            }
         }
     }
 }
