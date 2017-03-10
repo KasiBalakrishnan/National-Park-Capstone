@@ -21,6 +21,7 @@
             <p><strong>Entrance Fee: @Model.Entryfee.ToString("C")</strong></p>
         </div>
     </div>
+    <hr />
     <div>
         <h1 style="text-align:center">Weather Forecast</h1>
         <p>
@@ -36,39 +37,37 @@
             @{for (int i = 0; i < 5; i++)
                 {<div class="weatherDay">
                         <h2>Day @Model.FiveDayForecastvalue[i]</h2>
-                        <div style="text-align:center"><img src="~/Content/img/weather/@(Model.ImageName[i]).png" } /></div>
-                        <p>High: @Model.GetTemp(@Model.High[i], Convert.ToBoolean(Session["TempIsF"])) degrees</p>
-                        <p>Low: @Model.GetTemp(@Model.Low[i], Convert.ToBoolean(Session["TempIsF"])) degrees</p>
-                        <p>Forecast: @Model.Forecast[i]</p>
+                        <div style="text-align:center"><img class="weatherImage" src="~/Content/img/weather/@(Model.ImageName[i]).png" } /></div>
+                        <p><strong>Temp Range: </strong>@Model.GetTemp(@Model.Low[i], Convert.ToBoolean(Session["TempIsF"])) - @Model.GetTemp(@Model.High[i], Convert.ToBoolean(Session["TempIsF"])) degrees</p>
                         
                         @if (@Model.Forecast[i] == "snow")
                         {
-                        <p>Weather Advice: Pack Snowshoes</p>
+                        <p><strong>Advice: </strong>Pack Snowshoes.</p>
                         }
                         else if (@Model.Forecast[i] == "rain")
                         {
-                        <p>Weather Advice: Pack rain gear and wear waterproof shoes</p>
+                        <p><strong>Advice: </strong>Pack rain gear and wear waterproof shoes.</p>
                         }
                         else if (@Model.Forecast[i] == "thunderstorms")
                         {
-                        <p>Weather Advice: Seek shelter and avoid hiking on exposed ridges</p>
+                        <p><strong>Advice: </strong>Seek shelter and avoid hiking on exposed ridges.</p>
                         }
                         else if (@Model.Forecast[i] == "sunny")
                         {
-                        <p>Weather Advice: Pack sunblock</p>
+                        <p><strong>Advice: </strong>Pack sunblock.</p>
                         }
 
                         @if (@Model.High[i] > 75)
                         {
-                        <p>Weather advice: Bring an extra gallon of water</p>
+                        <p><strong>Advice: </strong>Bring an extra gallon of water.</p>
                         }
                         @if (@Model.High[i] - @Model.Low[i] > 20)
                         {
-                        <p>Weather advice: Wear breathable layers</p>
+                        <p><strong>Advice: </strong>Wear breathable layers.</p>
                         }
                         @if (@Model.Low[i] < 20)
                         {
-                        <p>Weather advice: Know the dangers of exposures to frigid temperatures</p>
+                        <p><strong>Advice: </strong>Know the dangers of exposures to frigid temperatures.</p>
                         }
                     </div>
                 }

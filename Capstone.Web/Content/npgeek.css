@@ -153,7 +153,6 @@ padding: 10px;
 
 }
 
-
 .surveyForm{
    text-align:center;
   
@@ -168,21 +167,25 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-
 #weatherForecast{
     display:flex;
     flex-direction:row;
     align-items:center;
     justify-content:center;
+    flex-wrap: wrap;
     width:100%;
     
 }
 .weatherDay{
     display:block;
-    width:300px;
-    height:500px;
-    border:2px solid lightblue;
-    padding: 10px;
+    width:250px;
+    height: 350px;
+    border:4px solid lightblue;
+    padding: 0px 10px;
     margin:5px;
     border-radius: 25px;
+}
+
+.weatherImage{
+    width: 150px;
 }
